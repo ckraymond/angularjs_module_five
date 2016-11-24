@@ -5,39 +5,55 @@
       Sign up today to get more information in our newsletter! We send out tons of great information and deals to all our loyal customers.
     </div>  <!--- col -->
   </div>  <!-- row -->
-  <div class = "row">
-    <div class = "col-md-6 col-xs-12">
-      <div class = "form-group">
-        <label for = "firstName"> First Name </label>
-        <input type = "text" class = "form-control" id = "firstName" placeholder = "First Name">
+  <form name = "signupForm">
+    <div class = "row">
+      <div class = "col-md-6 col-xs-12">
+        <div class = "form-group">
+          <label for = "firstName"> First Name </label>
+          <input name = "firstName" type = "text" class = "form-control" id = "firstName" placeholder = "First Name" ng-model = "suCtrl.user.firstName" required>
+        </div>
+      </div>
+      <div class = "col-md-6 col-xs-12">
+        <div class = "form-group">
+          <label for = "lastName"> Last Name </label>
+          <input name = "lastName" type = "text" class = "form-control" id = "lastName" placeholder = "Last Name" ng-model = "suCtrl.user.lastName" required>
+        </div>
+      </div>
+      <div class = "col-xs-12">
+        <div class = "form-group">
+          <label for = "email"> Email Address </label>
+          <input name = "email" type = "email" class = "form-control" id = "email" placeholder = "you@email.com" ng-model = "suCtrl.user.email" required>
+          <span ng-if="signupForm.email.$invalid && signupForm.email.$touched">Incorrect Email Address Format</span>
+        </div>
+        <div class = "form-group">
+          <label for = "phoneNum"> Phone Number </label>
+          <input name = "phone" type = "text" class = "form-control" id = "phoneNum" placeholder = "Phone Number" ng-model="suCtrl.user.phone"
+          pattern="(\d{3})-(\d{3})-(\d{4})" required>
+          <span ng-if="signupForm.phone.$invalid && signupForm.phone.$touched">
+            Phone must be in the format ###-###-####.
+          </span>
+        </div>
+      </div>
+      <div class = "col-xs-12">
+        <div class = "form-group">
+          <label for = "favDish"> Favorite Dish </label>
+          <input name = "favorite" type = "text" class = "form-control" id = "favDish" placeholder = "A1" ng-model = "suCtrl.user.favorite" required>
+          <span ng-show = "suCtrl.menuCheck == false && signupForm.favorite.$touched">
+            <div class = "alert alert-warning">
+              No such menu number exists!
+            </div>
+          </span>
+        </div>
+      </div>
+      <div class = "col-xs-12">
+        <div class = "form-group text-center">
+          <button ng-disabled="signupForm.$invalid" ng-click="suCtrl.submit()" class = "btn">Submit!</button>
+          <!-- <button ng-click="suCtrl.submit()" class = "btn">Submit!</button> -->
+        </div>
+      </div>
+      <div class = "col-xs-12 text-center alert alert-success" ng-if = 'suCtrl.completed'>
+        Information Succesfully Saved!
       </div>
     </div>
-    <div class = "col-md-6 col-xs-12">
-      <div class = "form-group">
-        <label for = "lastName"> Last Name </label>
-        <input type = "text" class = "form-control" id = "lastName" placeholder = "Last Name">
-      </div>
-    </div>
-    <div class = "col-xs-12">
-      <div class = "form-group">
-        <label for = "email"> Email Address </label>
-        <input type = "email" class = "form-control" id = "email" placeholder = "you@email.com">
-      </div>
-      <div class = "form-group">
-        <label for = "phoneNum"> Phone Number </label>
-        <input type = "text" class = "form-control" id = "phoneNum" placeholder = "Phone Number">
-      </div>
-    </div>
-    <div class = "col-xs-12">
-      <div class = "form-group">
-        <label for = "favDish"> Favorite Dish </label>
-        <input type = "email" class = "form-control" id = "favDish" placeholder = "you@email.com">
-      </div>
-    </div>
-    <div class = "col-xs-12">
-      <div class = "form-group text-center">
-        <button class = "btn">Submit!</button>
-      </div>
-    </div>
-  </div>
+  </form>
 </div>
