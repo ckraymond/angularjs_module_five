@@ -24,6 +24,7 @@ function SignupController(menuItems, userService, $http, ApiPath) {
     .catch (function(error){
       console.log(error);
       $ctrl.menuCheck = false;
+      $ctrl.completed = false;
     });
   }
 }
